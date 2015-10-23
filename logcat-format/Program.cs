@@ -11,6 +11,13 @@ namespace logcat_format
         private const string VerbosePrefix  = "\x1B[0m";
         static void Main(string[] args)
         {
+            // check to see if ConEmu's ANSI colors are enabled
+            if (Environment.GetEnvironmentVariable("ConEmuANSI") != "ON")
+            {
+                // ConEmu ANSI is off
+                Console.WriteLine("ConEmu ANSI colors are disabled or ConEmu is not installed.");
+                return;
+            }
             string line;
             while ((line = Console.ReadLine()) != null)
             {
